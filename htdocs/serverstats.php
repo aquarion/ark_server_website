@@ -21,7 +21,7 @@ $ver_match = preg_match("/\(v(.*)\)/", $info['HostName'], $matches);
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,6 +29,155 @@ $ver_match = preg_match("/\(v(.*)\)/", $info['HostName'], $matches);
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+<style type="text/css">
+@import url(http://weloveiconfonts.com/api/?family=zocial);
+
+/* zocial */
+[class*="zocial-"]:before {
+  font-family: 'zocial', sans-serif;
+}
+
+.btn-steam { 
+  color: #ffffff; 
+  background-color: #000000; 
+  border-color: #130269; 
+} 
+ 
+.btn-steam:hover, 
+.btn-steam:focus, 
+.btn-steam:active, 
+.btn-steam.active, 
+.open .dropdown-toggle.btn-steam { 
+  color: #ffffff; 
+  background-color: #49247A; 
+  border-color: #130269; 
+} 
+ 
+.btn-steam:active, 
+.btn-steam.active, 
+.open .dropdown-toggle.btn-steam { 
+  background-image: none; 
+} 
+ 
+.btn-steam.disabled, 
+.btn-steam[disabled], 
+fieldset[disabled] .btn-steam, 
+.btn-steam.disabled:hover, 
+.btn-steam[disabled]:hover, 
+fieldset[disabled] .btn-steam:hover, 
+.btn-steam.disabled:focus, 
+.btn-steam[disabled]:focus, 
+fieldset[disabled] .btn-steam:focus, 
+.btn-steam.disabled:active, 
+.btn-steam[disabled]:active, 
+fieldset[disabled] .btn-steam:active, 
+.btn-steam.disabled.active, 
+.btn-steam[disabled].active, 
+fieldset[disabled] .btn-steam.active { 
+  background-color: #000000; 
+  border-color: #130269; 
+} 
+ 
+.btn-steam .badge { 
+  color: #000000; 
+  background-color: #ffffff; 
+}
+
+.btn-facebook { 
+  color: #FFFFFF; 
+  background-color: #3B5998; 
+  border-color: #0e1f56; 
+} 
+ 
+.btn-facebook:hover, 
+.btn-facebook:focus, 
+.btn-facebook:active, 
+.btn-facebook.active, 
+.open .dropdown-toggle.btn-facebook { 
+  color: #FFFFFF; 
+  background-color: #0E1F56; 
+  border-color: #0e1f56; 
+} 
+ 
+.btn-facebook:active, 
+.btn-facebook.active, 
+.open .dropdown-toggle.btn-facebook { 
+  background-image: none; 
+} 
+ 
+.btn-facebook.disabled, 
+.btn-facebook[disabled], 
+fieldset[disabled] .btn-facebook, 
+.btn-facebook.disabled:hover, 
+.btn-facebook[disabled]:hover, 
+fieldset[disabled] .btn-facebook:hover, 
+.btn-facebook.disabled:focus, 
+.btn-facebook[disabled]:focus, 
+fieldset[disabled] .btn-facebook:focus, 
+.btn-facebook.disabled:active, 
+.btn-facebook[disabled]:active, 
+fieldset[disabled] .btn-facebook:active, 
+.btn-facebook.disabled.active, 
+.btn-facebook[disabled].active, 
+fieldset[disabled] .btn-facebook.active { 
+  background-color: #3B5998; 
+  border-color: #0e1f56; 
+} 
+ 
+.btn-facebook .badge { 
+  color: #3B5998; 
+  background-color: #FFFFFF; 
+}
+
+.btn-red { 
+  color: #FFFFFF; 
+  background-color: #CC1E36; 
+  border-color: #0E1F56; 
+} 
+ 
+.btn-red:hover, 
+.btn-red:focus, 
+.btn-red:active, 
+.btn-red.active, 
+.open .dropdown-toggle.btn-red { 
+  color: #FFFFFF; 
+  background-color: #E30D0D; 
+  border-color: #0E1F56; 
+} 
+ 
+.btn-red:active, 
+.btn-red.active, 
+.open .dropdown-toggle.btn-red { 
+  background-image: none; 
+} 
+ 
+.btn-red.disabled, 
+.btn-red[disabled], 
+fieldset[disabled] .btn-red, 
+.btn-red.disabled:hover, 
+.btn-red[disabled]:hover, 
+fieldset[disabled] .btn-red:hover, 
+.btn-red.disabled:focus, 
+.btn-red[disabled]:focus, 
+fieldset[disabled] .btn-red:focus, 
+.btn-red.disabled:active, 
+.btn-red[disabled]:active, 
+fieldset[disabled] .btn-red:active, 
+.btn-red.disabled.active, 
+.btn-red[disabled].active, 
+fieldset[disabled] .btn-red.active { 
+  background-color: #CC1E36; 
+  border-color: #0E1F56; 
+} 
+ 
+.btn-red .badge { 
+  color: #CC1E36; 
+  background-color: #FFFFFF; 
+}
+
+</style>
+
   </head>
   <body>
     <div class="container">
@@ -36,16 +185,25 @@ $ver_match = preg_match("/\(v(.*)\)/", $info['HostName'], $matches);
     <h1><?PHP echo $info['ModDesc'] ?>: <?PHP echo $info['HostName'] ?></h1>
 
 <?PHP
-if ($ver_match && floor($matches[1]) == floor($latest)) {
+if ($ver_match && $matches[1] == $latest) {
+	printf('<div class="alert alert-success">[%s] Server is up to date</div>', $latest);
+
+} elseif ($ver_match && floor($matches[1]) == floor($latest)) {
+	printf('<div class="alert alert-warning">[%s] Minor version mismatch. Usually this doesn\'t need a server update, but poke admins if something\'s broken</div>');
 
 } else {
-	echo '<div class="alert alert-warning">Server update pending</div>';
+	printf('<div class="alert alert-danger">[%s] Server update pending</div>', $latest);
 }
 
 ?>
 <p>Welcome to the ARK Experiment, where the local time is <?PHP echo $rules['DayTime_s'] ?>. 
-In the case of an emergency, exits are located nowhere. Good luck. 
-[<a href="steam://connect/ark.ludo.istic.net:27015">Launch Steam & Connect</a>]</p>
+In the case of an emergency, exits are located nowhere. Good luck. </p>
+<div class="btn-group">
+	<button href="steam://connect/ark.ludo.istic.net:27015" class="btn btn-lg btn-steam"><span class="zocial-steam"></span> Launch Steam &amp; Connect</button> 
+	<button href="http://steamcommunity.com/app/346110/discussions/0/594820656447032287/" class="btn btn-lg btn-red"><i class="glyphicon glyphicon-fire"> </i> Patch Notes</button> 
+	<button href="https://www.facebook.com/groups/ARKitecture/" class="btn btn-lg btn-facebook"><span class="zocial-facebook"></span> FB Group</button> 
+
+</div>
 <?PHP
 printf('<h2>Connected Players: %d/%d</h2>', $info['Players'], $info['MaxPlayers']);
 foreach($players as $player){
