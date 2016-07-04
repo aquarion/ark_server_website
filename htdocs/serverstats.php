@@ -214,9 +214,9 @@ if ($ver_match && $matches[1] == $latest) {
 <p>Welcome to the ARK Experiment, where the local time is <?PHP echo $rules['DayTime_s'] ?>. 
 In the case of an emergency, exits are located nowhere. Good luck. </p>
 <div class="btn-group">
-	<button href="steam://connect/ark.ludo.istic.net:27015" class="btn btn-lg btn-steam"><span class="zocial-steam"></span> Launch Steam &amp; Connect</button> 
-	<button href="http://steamcommunity.com/app/346110/discussions/0/594820656447032287/" class="btn btn-lg btn-red"><i class="glyphicon glyphicon-fire"> </i> Patch Notes</button> 
-	<button href="https://www.facebook.com/groups/ARKitecture/" class="btn btn-lg btn-facebook"><span class="zocial-facebook"></span> FB Group</button> 
+	<a href="steam://connect/ark.ludo.istic.net:27015" class="btn btn-lg btn-steam"><span class="zocial-steam"></span> Launch Steam &amp; Connect</a> 
+	<a href="http://steamcommunity.com/app/346110/discussions/0/594820656447032287/" class="btn btn-lg btn-red"><i class="glyphicon glyphicon-fire"> </i> Patch Notes</a> 
+	<a href="https://www.facebook.com/groups/ARKitecture/" class="btn btn-lg btn-facebook"><span class="zocial-facebook"></span> FB Group</a> 
 
 </div>
 <?PHP
