@@ -1,0 +1,6 @@
+{
+    "require": {
+        "gries/rcon": "^0.0.3",
+        "xpaw/php-source-query-class": "^1.0"
+    }
+}

@@ -1,0 +1,10 @@
+<?PHP
+
+define("CACHEDIR", "/tmp");
+define("STEAM_API_KEY", "[YOUR STEAM API KEY]");
+define("RCON_PASSWORD", "[YOUR RCON PASSWORD]");
+define("SERVER_IP", '127.0.0.1');
+define("SERVER_PORT", 27015);
+
+define("RCON_PORT", 32330);
+define("RCON_HOST", SERVER_IP);
