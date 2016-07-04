@@ -1,11 +1,22 @@
 <?PHP
-$latest = file_get_contents("http://arkdedicated.com/version");
+
+$latest = ArkInfo::getUrlCached("http://arkdedicated.com/version", 60*60);
 $info    = $Query->GetInfo( );
 $players = $Query->GetPlayers( );
 $rules   = $Query->GetRules( );
 #$stats	 = $Query->Rcon('stats');
-
 $ver_match = preg_match("/\(v(.*)\)/", $info['HostName'], $matches);
+
+// setup the messenger
+
+$rconPlayers = ArkInfo::getPlayers();
+
+$ids = array();
+foreach($rconPlayers as $player){
+	$ids[] = $player["SteamID"];
+}
+
+$steamProfiles = ArkInfo::getSteamProfiles($ids);
 
 ?>
 <!DOCTYPE html>
@@ -176,6 +187,10 @@ fieldset[disabled] .btn-red.active {
   background-color: #FFFFFF; 
 }
 
+.player-info > h3 {
+	margin-top: .2em;
+}
+
 </style>
 
   </head>
@@ -207,13 +222,26 @@ In the case of an emergency, exits are located nowhere. Good luck. </p>
 <?PHP
 printf('<h2>Connected Players: %d/%d</h2>', $info['Players'], $info['MaxPlayers']);
 foreach($players as $player){
+
+	echo "<div class=\"row  no-gutter\">";
+	
 	if(!$player['Name']){
 		print('<h3>[Connecting...]</h3>');
 	} else {
-		printf('<h3>%s</h3>', $player['Name']);
+		$rcon = $rconPlayers[$player['Id']];
+		$steam = $steamProfiles[$rcon['SteamID']];
+		printf('<div class="col-md-1"><img src="%s" alt="Avatar for %s" class="img-rounded"></div>', $steam->avatarmedium, $player['Name']);
+		echo '<div class="col-md-5 player-info">';
+		printf('<h3><a href="%s">%s</a></h3>', $steam->profileurl, $player['Name']);
+		printf("<p>Connection time: %s", $player['TimeF']);
+		/*echo "<pre>";
+		var_dump($rcon);
+		var_dump($steam);
+		var_dump($player);
+		echo "</pre>";
+		echo "</div>";
+		echo "</div>";*/
 	}	
-	printf("<p>Connection time: %s", $player['TimeF']);
-
 	
 }
 #var_dump($info);
