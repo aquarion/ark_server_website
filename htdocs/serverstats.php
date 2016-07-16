@@ -204,7 +204,7 @@ if ($ver_match && $matches[1] == $latest) {
 	printf('<div class="alert alert-success">[%s] Server is up to date</div>', $latest);
 
 } elseif ($ver_match && floor($matches[1]) == floor($latest)) {
-	printf('<div class="alert alert-warning">[%s] Minor version mismatch. Usually this doesn\'t need a server update, but poke admins if something\'s broken</div>');
+	printf('<div class="alert alert-warning">[%s] Minor version mismatch. Usually this doesn\'t need a server update, but poke admins if something\'s broken</div>', $latest);
 
 } else {
 	printf('<div class="alert alert-danger">[%s] Server update pending</div>', $latest);
